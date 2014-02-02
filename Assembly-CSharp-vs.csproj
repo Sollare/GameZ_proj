@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{FE9A8D37-008F-61C2-8480-4CA0BE63D789}</ProjectGuid>
+	<ProjectGuid>{796DA181-D264-2D95-7C23-89FA4BE9DE30}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -46,6 +46,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Project\Classes\Input\Weapon\WeaponInput.cs" />
+     <Compile Include="Assets\Project\Classes\Input\Weapon\WeaponThrowInput.cs" />
      <Compile Include="Assets\Project\Classes\Inventory\Inventory.cs" />
      <Compile Include="Assets\Project\Classes\Inventory\InventoryController.cs" />
      <Compile Include="Assets\Project\Classes\Items\Basis\Item.cs" />
@@ -55,6 +57,10 @@
      <Compile Include="Assets\Project\Classes\Items\Interfaces\IUsable.cs" />
      <Compile Include="Assets\Project\Classes\Items\Weapons\MeleeWeapons\WeaponStick.cs" />
      <Compile Include="Assets\Project\Classes\Items\Weapons\ThrowWeapons\WeaponBottle.cs" />
+     <Compile Include="Assets\Project\Classes\Items\Weapons\View\WeaponMeleeView.cs" />
+     <Compile Include="Assets\Project\Classes\Items\Weapons\View\WeaponRangeView.cs" />
+     <Compile Include="Assets\Project\Classes\Items\Weapons\View\WeaponThrowView.cs" />
+     <Compile Include="Assets\Project\Classes\Items\Weapons\View\WeaponView.cs" />
      <Compile Include="Assets\Project\Classes\Items\Weapons\Weapon.cs" />
      <Compile Include="Assets\Project\Classes\Items\Weapons\WeaponController.cs" />
      <Compile Include="Assets\Project\Classes\Items\Weapons\WeaponMelee.cs" />
@@ -62,13 +68,24 @@
      <Compile Include="Assets\Project\Classes\Items\Weapons\WeaponThrow.cs" />
      <Compile Include="Assets\Project\Classes\Messages\InteractionMessage.cs" />
      <Compile Include="Assets\Project\Classes\Messages\Message.cs" />
+     <Compile Include="Assets\Project\Classes\Miscellaneous\Layers.cs" />
+     <Compile Include="Assets\Project\Scripts\Acrobatic\AcrobaticComponent.cs" />
+     <Compile Include="Assets\Project\Scripts\Acrobatic\Elements\Climb.cs" />
+     <Compile Include="Assets\Project\Scripts\Acrobatic\Elements\IAcrobaticElement.cs" />
+     <Compile Include="Assets\Project\Scripts\Acrobatic\Elements\Ladder.cs" />
      <Compile Include="Assets\Project\Scripts\Characters\AI\CharacterAI.cs" />
      <Compile Include="Assets\Project\Scripts\Characters\AI\ZombieAI.cs" />
      <Compile Include="Assets\Project\Scripts\Characters\Animators\CharacterAnimator.cs" />
      <Compile Include="Assets\Project\Scripts\Characters\Animators\PlayerAnimator.cs" />
      <Compile Include="Assets\Project\Scripts\Characters\Animators\StateMachineController\AttackStateController.cs" />
      <Compile Include="Assets\Project\Scripts\Characters\Animators\StateMachineController\StateMachineController.cs" />
+     <Compile Include="Assets\Project\Scripts\Characters\Behaviour\Player\PlayerClimbBehaviour.cs" />
+     <Compile Include="Assets\Project\Scripts\Characters\Behaviour\Player\PlayerLadderBehaviour.cs" />
+     <Compile Include="Assets\Project\Scripts\Characters\Behaviour\Player\PlayerWalkBehaviour.cs" />
+     <Compile Include="Assets\Project\Scripts\Characters\Behaviour\UncontrollableBehaviour.cs" />
+     <Compile Include="Assets\Project\Scripts\Characters\Behaviour\_Base\CharacterBehaviour.cs" />
      <Compile Include="Assets\Project\Scripts\Characters\Controllers\CharacterController.cs" />
+     <Compile Include="Assets\Project\Scripts\Characters\Controllers\IControllable.cs" />
      <Compile Include="Assets\Project\Scripts\Characters\Controllers\PlayerController.cs" />
      <Compile Include="Assets\Project\Scripts\Characters\Controllers\ZombieController.cs" />
      <Compile Include="Assets\Project\Scripts\Input\PlayerInput.cs" />
@@ -79,6 +96,13 @@
      <Compile Include="Assets\Project\Scripts\UI\CharacterHealthBar.cs" />
      <Compile Include="Assets\Project\Scripts\UI\FollowPlayer.cs" />
      <Compile Include="Assets\Project\Scripts\UI\UserInterfaceController.cs" />
+     <Compile Include="Assets\Tools\iTween\Plugins\iTween.cs" />
+ <Reference Include="GoKit">
+ <HintPath>Assets\Tools\GoKit.dll</HintPath>
+ </Reference>
+ <Reference Include="HOTween">
+ <HintPath>Assets\Tools\HOTween\Plugins\HOTween.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

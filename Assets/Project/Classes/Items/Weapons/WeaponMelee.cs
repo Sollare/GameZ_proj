@@ -54,4 +54,9 @@ public abstract class WeaponMelee : Weapon
         GUILayout.TextField(Durability.ToString(), GUILayout.MaxWidth(50));
         GUILayout.EndHorizontal();
     }
+
+    public override WeaponInput GetInputController()
+    {
+        return null;
+    }
 }

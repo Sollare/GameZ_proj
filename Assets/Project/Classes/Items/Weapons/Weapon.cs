@@ -5,6 +5,7 @@ using System.Collections;
 [Serializable]
 public abstract class Weapon : Item, IInspectable, IEquipable
 {
+
     [SerializeField]
     private float _damage = 0f;
     /// <summary>
@@ -26,7 +27,7 @@ public abstract class Weapon : Item, IInspectable, IEquipable
         get { return _range; }
         set
         {
-            _range = Mathf.Clamp(value, 1f, float.MaxValue);
+            _range = Mathf.Clamp(value, 1f, 25f);
         }
     }
 
@@ -47,8 +48,8 @@ public abstract class Weapon : Item, IInspectable, IEquipable
     /// <summary>
     /// Использование оружия
     /// </summary>
-    public abstract void Attack();
-
+    public abstract void Attack(PlayerController player, Transform weaponTransform);
+    
     /// <summary>
     /// Бросок оружия
     /// </summary>
@@ -68,7 +69,7 @@ public abstract class Weapon : Item, IInspectable, IEquipable
 
         GUILayout.Label("Дальность:");
         GUILayout.BeginHorizontal();
-        Range = GUILayout.HorizontalSlider(Range, 0f, 1000f);
+        Range = GUILayout.HorizontalSlider(Range, 1f, 25f);
         GUILayout.TextField(Range.ToString(), GUILayout.MaxWidth(50));
         GUILayout.EndHorizontal();
 
@@ -76,7 +77,7 @@ public abstract class Weapon : Item, IInspectable, IEquipable
         GUILayout.BeginHorizontal();
 
         GUILayout.Label("Частота:", GUILayout.MaxWidth(130f));
-        Rate = GUILayout.HorizontalSlider(Rate, 0.1f, 5f);
+        Rate = GUILayout.HorizontalSlider(Rate, 0.1f, 3f);
         GUILayout.TextField(Rate.ToString(), GUILayout.MaxWidth(50));
         GUILayout.EndHorizontal();
     }
@@ -96,5 +97,5 @@ public abstract class Weapon : Item, IInspectable, IEquipable
 
     public abstract Sprite equippedSprite { get; }
 
-
+    public abstract WeaponInput GetInputController();
 }

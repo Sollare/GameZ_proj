@@ -42,11 +42,10 @@ public sealed class WeaponStick : WeaponMelee
     {
         throw new System.NotImplementedException();
     }
-
-
-    public override void Attack()
+    
+    public override void Attack(PlayerController player, Transform weaponTransform)
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 
     public override void Throw(Vector2 direction)

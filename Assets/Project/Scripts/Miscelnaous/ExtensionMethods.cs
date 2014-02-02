@@ -9,9 +9,28 @@ public static class ExtensionMethods {
         
         if(component == null)
             component = gameObject.AddComponent<T>();
-
-        Debug.Log(component);
-
+        
         return component;
+    }
+    public static Vector2 ApplyForceMode(this Rigidbody2D rigidbody2d, Vector2 force, ForceMode forceMode)
+    {
+
+        switch (forceMode)
+        {
+            case ForceMode.Force:
+                return force;
+            case ForceMode.Impulse:
+                return force/Time.fixedDeltaTime;
+
+            case ForceMode.Acceleration:
+                return force*rigidbody2d.mass;
+
+            case ForceMode.VelocityChange:
+                return force*rigidbody2d.mass/Time.fixedDeltaTime;
+
+            default:
+                goto case ForceMode.Force;
+        }
+
     }
 }

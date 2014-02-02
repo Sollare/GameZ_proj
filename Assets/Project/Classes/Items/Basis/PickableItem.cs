@@ -41,7 +41,7 @@ public class PickableItem : MonoBehaviour
             return _item;
         } 
 
-        private set { _item = value; }
+        set { _item = value; }
     }
 
     public void SetItemSource(UnityEngine.Object obj) 

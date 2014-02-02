@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(Animator))]
 public class PlayerAnimator : CharacterAnimator
 {
     private List<StateMachineController> _stateMachineControllers;
@@ -10,14 +11,14 @@ public class PlayerAnimator : CharacterAnimator
 
     public PlayerController PlayerController { get; private set; }
 
-    void Awake()
+    protected override void Awake()
     {
-        animator = GetComponent<Animator>();
-        PlayerController = GetComponent<PlayerController>();
+        base.Awake();
 
+        PlayerController = GetComponent<PlayerController>();
         _stateMachineControllers = new List<StateMachineController>();
 
-        animator.runtimeAnimatorController = GetAnimatorController();
+        //animator.runtimeAnimatorController = GetAnimatorController();
         PlayerController.WeaponController.OnWeaponStateChanged += WeaponStateChanged;
     }
 
@@ -42,18 +43,20 @@ public class PlayerAnimator : CharacterAnimator
             }
 #endif
         }
+
         if (newState == WeaponController.WeaponState.Unequipped)
         {
 #if UNITY_EDITOR
             if (_lastStateMachineController != null) // Откатываем контроллер к предыдущему состоянию
             {
                 _lastStateMachineController.Undo();
-                _lastStateMachineController = null;
                 _stateMachineControllers.Remove(_lastStateMachineController);
+                _lastStateMachineController = null;
             }
 #endif
             // Берем стандартный
-            animator.runtimeAnimatorController = GetAnimatorController();
+            animator.runtimeAnimatorController = PlayerController.currentBehaviour.GetAnimatorController();
+            //GetAnimatorController();
         }
     }
     
@@ -74,12 +77,7 @@ public class PlayerAnimator : CharacterAnimator
 
     public override void PerformDamage(float damage)
     {
-        throw new System.NotImplementedException();
-    }
-
-    public override RuntimeAnimatorController GetAnimatorController()
-    {
-        return Resources.Load<RuntimeAnimatorController>("Characters/AnimatorControllers/Player/StandartController");
+        base.PerformDamage(damage);
     }
 
     void OnDestroy()

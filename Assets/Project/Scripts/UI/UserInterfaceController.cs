@@ -4,10 +4,10 @@ using System.Collections;
 
 public class UserInterfaceController : MonoBehaviour
 {
+    private Transform _throwTarget;
+
     // Спрайт экипированного предмета
     public SpriteRenderer EquippedItemSprite;
-
-    private Transform _throwTarget;
 
     void Awake()
     {

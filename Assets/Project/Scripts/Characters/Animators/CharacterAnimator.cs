@@ -3,7 +3,7 @@ using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using System.Collections;
 
-
+[RequireComponent(typeof(Animator))]
 public abstract class CharacterAnimator : MonoBehaviour
 {/// <summary>
     /// Делегат поворота 
@@ -22,27 +22,43 @@ public abstract class CharacterAnimator : MonoBehaviour
         if (handler != null) handler(facingright);
     }
 
+    private Animator _animator;
 
-    public Animator animator { get; protected set; }
+    public Animator animator
+    {
+        get
+        {
+            if(_animator == null)
+                _animator = GetComponent<Animator>();
 
-    private bool facingRight = true;
+            return _animator;
+        }
+    }
 
+    private bool _facingRight = true;
 
     /// <summary>
-    /// Метод возвращает AnimatorController, связанный с текущим аниматором персонажа.
-    /// Необходимо реализовать его в классе наследнике, чтобы персонаж начал анимироваться именно этим контроллером
+    /// Смотрит ли персонаж вправо
     /// </summary>
-    public abstract RuntimeAnimatorController GetAnimatorController();
+    public bool facingRight
+    {
+        get
+        {
+            return _facingRight;
+        }
+
+        protected set { _facingRight = value; }
+    }
 
     public virtual void Move(float hor, float ver)
     {
         if (hor < 0 && facingRight)
            Flip();
 
-        if(hor > 0 && !facingRight)
+        if (hor > 0 && !facingRight)
             Flip();
 
-        animator.SetFloat("Speed", Mathf.Abs(hor));
+        animator.SetFloat("Horizontal", Mathf.Abs(hor));
     }
 
     /// <summary>
@@ -50,6 +66,11 @@ public abstract class CharacterAnimator : MonoBehaviour
     /// </summary>
     /// <param name="interactedObject">Объект, с которым проводится взаимодействие</param>
     public abstract void Interract(GameObject interactedObject);
+
+    protected virtual void Awake()
+    {
+        //animator = GetComponent<Animator>();
+    }
 
     public virtual void Attack()
     {
@@ -61,6 +82,12 @@ public abstract class CharacterAnimator : MonoBehaviour
     public virtual void PerformDamage(float damage)
     {
         animator.SetTrigger("Hit");
+    }
+
+    public void StopAnimations()
+    {
+        if(animator.animation)
+            animator.animation.Stop();
     }
 
     void Flip()

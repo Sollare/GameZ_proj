@@ -31,9 +31,6 @@ public class AttackStateController : StateMachineController
         statesChanged = new List<UnityEditorInternal.State>();
         _animator = animator.runtimeAnimatorController as UnityEditorInternal.AnimatorController;;
         
-        // Number of layers:
-        int layerCount = _animator.layerCount;
-
         // Names of each layer:
         for (int i = 0; i < _animator.layerCount; i++)
         {
@@ -59,7 +56,7 @@ public class AttackStateController : StateMachineController
     {
         if (statesChanged == null)
         {
-            Debug.LogWarning("AttackStateController did not job yet");
+            Debug.LogWarning("AttackStateController did not work out yet");
             return;
         }
 

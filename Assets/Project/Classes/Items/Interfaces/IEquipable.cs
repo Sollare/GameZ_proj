@@ -24,6 +24,11 @@ public interface IEquipable
     /// Возвращает экипируемый префаб
     /// </summary>
     GameObject GetEquipablePrefab();
+
+    /// <summary>
+    /// Возврощает контроллер ввода для текущего оружия (принципы управления оружием могут отличается у разных типов)
+    /// </summary>
+    WeaponInput GetInputController();
 }
 
 //TODO: как использовать предмет по нажатию клавиши клавиатуры, когда он экипирован?

@@ -50,10 +50,9 @@ public sealed class WeaponBottle : WeaponThrow
         throw new NotImplementedException();
     }
 
-
-    public override void Attack()
+    public override void Attack(PlayerController player, Transform weaponTransform)
     {
-        throw new NotImplementedException();
+        Debug.LogWarning("NotImplementedException");
     }
 }
 

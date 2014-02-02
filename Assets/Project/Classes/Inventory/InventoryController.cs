@@ -39,6 +39,16 @@ public class InventoryController : MonoBehaviour
         ItemsEnumerator = _inventory.Items.GetEnumerator();
     }
 
+    public int ItemsCount
+    {
+        get
+        {
+            if (_inventory != null)
+                return _inventory.Items.Count;
+            else return 0;
+        }
+    }
+
     /// <summary>
     /// Попытка положить предмет. 
     /// </summary>
